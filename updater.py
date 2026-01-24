@@ -11,7 +11,7 @@ FILES = [
     "version.txt"
 ]
 
-GITHUB_RAW_BASE = "https://raw.githubusercontent.com/username/repo/main/"
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/szymon4github/CMD-Browser/main/"
 
 APP_FOLDER = os.path.dirname(os.path.abspath(__file__))
 

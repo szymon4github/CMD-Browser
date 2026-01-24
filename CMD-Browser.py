@@ -113,7 +113,29 @@ time.sleep(0.5)
 pargv = None
 time.sleep(0.5)
 
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/szymon4github/CMD-Browser/main/"
+
+APP_FOLDER = os.path.dirname(os.path.abspath(__file__))
+
+def get_latest_version():
+    r = requests.get(GITHUB_RAW_BASE + "version.txt")
+    return r.text.strip()
+
+def get_current_version():
+    with open(os.path.join(APP_FOLDER, "version.txt"), "r") as f:
+        return f.read().strip()
+
 os.system('cls' if os.name == 'nt' else 'clear')
+
+print("\n")
+current = get_current_version()
+latest = get_latest_version()
+print(colored(f"Twoja wersja: {current}, najnowsza: {latest}", "yellow"))
+if latest != current:
+    print(colored("Dostępna aktualizacja. Uruchom updater.py, aby zaktualizować!", "yellow"))
+else:
+    print(colored("Masz najnowszą wersję!", "green"))
+
 print(5*"\n")
 print(colored(pyfiglet.figlet_format("Gotowe!"), "green"))
 time.sleep(3)
@@ -129,7 +151,7 @@ try:
             img.main("logo.png", 30)
             print(colored(ascii_banner, 'green'))
             input()
-            print(colored("Prosta przeglądarka tekstowa w terminalu".center(tab), 'cyan'))
+            print(colored("Przeglądarka tekstowa w terminalu".center(tab), 'cyan'))
             print("\n")
 
             strona = input("Podaj adres strony: http://")
