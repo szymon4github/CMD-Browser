@@ -4,6 +4,7 @@ import requests
 # Lista plików do aktualizacji (ścieżki w repo i lokalnie)
 FILES = [
     "CMD-Browser.py",
+    "updater.py"
     "img.py",
     "logo.png",
     "test.py",
