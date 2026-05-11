@@ -28,7 +28,10 @@ enters = tab.lines
 tab = tab.columns
 max_page = enters - 4
 ascii_banner = pyfiglet.figlet_format("CMD-Browser")
-img.main("./logo.png", 45)
+try:
+    img.main("logo.png", 45)
+except:
+    pass
 time.sleep(3)
 os.system('cls' if os.name == 'nt' else 'clear')
 print(colored(ascii_banner, "green"))
@@ -199,7 +202,10 @@ try:
             strona = str(pargv)
         else:
             ascii_banner = pyfiglet.figlet_format("CMD-Browser")
-            img.main("logo.png", 30)
+            try:
+                img.main("logo.png", 30)
+            except:
+                pass
             print(colored(ascii_banner, 'green'))
             input()
             print(colored("Przeglądarka tekstowa w terminalu".center(tab), 'cyan'))
@@ -320,8 +326,10 @@ try:
 
                 imgs = Image.open(temp_filepath).convert('RGB')
                 
-
-                img.main(temp_filepath, tab)
+                try:
+                    img.main(temp_filepath, tab)
+                except:
+                    pass
 
                 input()
                 
