@@ -5,7 +5,7 @@ try:
 except:
     time.sleep(5)
     print("Brak wymaganych plików lub biblioteki colorama. Instalowanie bibliotek...")
-    os.system("pip install colorama")
+    os.system("pip3 install colorama")
     
 try:
         import pyfiglet
@@ -13,17 +13,22 @@ try:
         
 except:
     print("Brak wymaganych bibliotek. Instalowanie bibliotek...")
-    os.system("pip install pyfiglet")
-    os.system("pip install termcolor")
-    time.sleep(5)
-    exit()
+    os.system("pip3 install pyfiglet")
+    os.system("pip3 install termcolor")
+    try:
+        import pyfiglet
+        from termcolor import colored
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
 os.system('cls' if os.name == 'nt' else 'clear')
 tab = os.get_terminal_size()
 enters = tab.lines
 tab = tab.columns
 max_page = enters - 4
 ascii_banner = pyfiglet.figlet_format("CMD-Browser")
-img.main("logo.png", 45)
+img.main("./logo.png", 45)
 time.sleep(3)
 os.system('cls' if os.name == 'nt' else 'clear')
 print(colored(ascii_banner, "green"))
@@ -32,7 +37,13 @@ try:
     import timeit
 except:
     print(colored("\t-timeit - instalowanie biblioteki", "red"))
-    os.system("pip install timeit")
+    os.system("pip3 install timeit")
+    try:
+        import timeit
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
 finally:
     print(colored("\t-timeit", "green"))
 time.sleep(0.5)
@@ -41,6 +52,12 @@ try:
 except:
     print(colored("\t-urllib - instalowanie biblioteki", "red"))
     os.system("pip install urllib")
+    try:
+        import urllib
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
 finally:
     print(colored("\t-urllib", "green"))
 time.sleep(0.5)
@@ -49,13 +66,26 @@ try:
 except:
     print(colored("\t-pillow - instalowanie biblioteki", "red"))
     os.system("pip install pillow")
-print(colored("\t-pillow", "green"))
+    try:
+        from PIL import Image
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
+finally:
+    print(colored("\t-pillow", "green"))
 time.sleep(0.5)
 try:
     import tempfile
 except:
     print(colored("\t-tempfile - instalowanie biblioteki", "red"))
     os.system("pip install tempfile")
+    try:
+        import tempfile
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
 finally:
     print(colored("\t-tempfile", "green"))
 time.sleep(0.5)
@@ -64,6 +94,12 @@ try:
 except:
     print(colored("\t-bs4 - instalowanie biblioteki", "red"))
     os.system("pip install bs4")
+    try:
+        import bs4
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
 finally:
     print(colored("\t-bs4", "green"))
 time.sleep(0.5)
@@ -72,6 +108,12 @@ try:
 except:
     print(colored("\t-requests - instalowanie biblioteki", "red"))
     os.system("pip install requests")
+    try:
+        import requests
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
 finally:
     print(colored("\t-requests", "green"))
 time.sleep(0.5)
@@ -80,6 +122,12 @@ try:
 except:
     print(colored("\t-re - instalowanie biblioteki", "red"))
     os.system("pip install re")
+    try:
+        import re
+    except:
+        print(colored("Błąd w instalacji bibliotek!", "red"))
+        time.sleep(3)
+        exit()
 finally:
     print(colored("\t-re", "green"))
 time.sleep(0.5)
@@ -118,8 +166,11 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/szymon4github/CMD-Browser/m
 APP_FOLDER = os.path.dirname(os.path.abspath(__file__))
 
 def get_latest_version():
-    r = requests.get(GITHUB_RAW_BASE + "version.txt")
-    return r.text.strip()
+    try:
+        r = requests.get(GITHUB_RAW_BASE + "version.txt")
+        return r.text.strip()
+    except:
+        print(colored("Błąd pobierania najnowszej wersji!", "red"))
 
 def get_current_version():
     with open(os.path.join(APP_FOLDER, "version.txt"), "r") as f:

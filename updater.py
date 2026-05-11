@@ -8,7 +8,6 @@ FILES = [
     "img.py",
     "logo.png",
     "test.py",
-    "photo.png",
     "version.txt"
 ]
 
