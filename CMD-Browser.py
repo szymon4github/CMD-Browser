@@ -51,7 +51,7 @@ try:
     from urllib.parse import urljoin
 except:
     print(colored("\t-urllib - instalowanie biblioteki", "red"))
-    os.system("pip install urllib")
+    os.system("pip3 install urllib")
     try:
         import urllib
     except:
@@ -65,7 +65,7 @@ try:
     from PIL import Image
 except:
     print(colored("\t-pillow - instalowanie biblioteki", "red"))
-    os.system("pip install pillow")
+    os.system("pip3 install pillow")
     try:
         from PIL import Image
     except:
@@ -79,7 +79,7 @@ try:
     import tempfile
 except:
     print(colored("\t-tempfile - instalowanie biblioteki", "red"))
-    os.system("pip install tempfile")
+    os.system("pip3 install tempfile")
     try:
         import tempfile
     except:
@@ -93,7 +93,7 @@ try:
     import bs4
 except:
     print(colored("\t-bs4 - instalowanie biblioteki", "red"))
-    os.system("pip install bs4")
+    os.system("pip3 install bs4")
     try:
         import bs4
     except:
@@ -107,7 +107,7 @@ try:
     import requests
 except:
     print(colored("\t-requests - instalowanie biblioteki", "red"))
-    os.system("pip install requests")
+    os.system("pip3 install requests")
     try:
         import requests
     except:
@@ -121,7 +121,7 @@ try:
     import re
 except:
     print(colored("\t-re - instalowanie biblioteki", "red"))
-    os.system("pip install re")
+    os.system("pip3 install re")
     try:
         import re
     except:
