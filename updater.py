@@ -2,7 +2,9 @@ import os
 import requests
 import time
 from termcolor import colored
-
+import subprocess
+import sys
+os.system('cls' if os.name == 'nt' else 'clear')
 print(colored("Czekanie na zamknięcie głównego programu", "yellow"))
 time.sleep(3)
 print(colored("Program zamknięty, uruchamianie aktualizacji", "green"))
@@ -49,5 +51,9 @@ if __name__ == "__main__":
     print(f"Twoja wersja: {current}, najnowsza: {latest}")
     if latest != current:
         update_app()
+        print(colored("Uruchamienie z powrotem głównego programu!", "green"))
+        time.sleep(3)
+        subprocess.Popen(["python", "CMD-Browser.py"])
+        sys.exit()
     else:
         print("Masz najnowszą wersję!")
