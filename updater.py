@@ -1,5 +1,11 @@
 import os
 import requests
+import time
+from termcolor import colored
+
+print(colored("Czekanie na zamknięcie głównego programu", "yellow"))
+time.sleep(3)
+print(colored("Program zamknięty, uruchamianie aktualizacji", "green"))
 
 # Lista plików do aktualizacji (ścieżki w repo i lokalnie)
 FILES = [
@@ -29,14 +35,13 @@ def update_file(file_name):
     if r.status_code == 200:
         with open(os.path.join(APP_FOLDER, file_name), "wb") as f:
             f.write(r.content)
-        print(f"{file_name} zaktualizowany!")
     else:
         print(f"Błąd pobierania {file_name}: {r.status_code}")
 
 def update_app():
     for file_name in FILES:
         update_file(file_name)
-    print("Aktualizacja zakończona! Uruchom ponownie aplikację.")
+    print(colored("Aktualizacja zakończona sukcesem!", "green"))
 
 if __name__ == "__main__":
     current = get_current_version()

@@ -1,5 +1,6 @@
 import time
 import os
+import sys
 try:
     import img
 except:
@@ -8,8 +9,8 @@ except:
     os.system("pip3 install colorama")
     
 try:
-        import pyfiglet
-        from termcolor import colored
+    import pyfiglet
+    from termcolor import colored
         
 except:
     print("Brak wymaganych bibliotek. Instalowanie bibliotek...")
@@ -21,7 +22,7 @@ except:
     except:
         print(colored("Błąd w instalacji bibliotek!", "red"))
         time.sleep(3)
-        exit()
+        sys.exit()
 os.system('cls' if os.name == 'nt' else 'clear')
 tab = os.get_terminal_size()
 enters = tab.lines
@@ -36,33 +37,12 @@ time.sleep(3)
 os.system('cls' if os.name == 'nt' else 'clear')
 print(colored(ascii_banner, "green"))
 print(colored("Importowanie bibliotek:", "yellow"))
-try:
-    import timeit
-except:
-    print(colored("\t-timeit - instalowanie biblioteki", "red"))
-    os.system("pip3 install timeit")
-    try:
-        import timeit
-    except:
-        print(colored("Błąd w instalacji bibliotek!", "red"))
-        time.sleep(3)
-        exit()
-finally:
-    print(colored("\t-timeit", "green"))
+
+import timeit
+print(colored("\t-timeit", "green"))
 time.sleep(0.5)
-try:
-    from urllib.parse import urljoin
-except:
-    print(colored("\t-urllib - instalowanie biblioteki", "red"))
-    os.system("pip3 install urllib")
-    try:
-        import urllib
-    except:
-        print(colored("Błąd w instalacji bibliotek!", "red"))
-        time.sleep(3)
-        exit()
-finally:
-    print(colored("\t-urllib", "green"))
+from urllib.parse import urljoin
+print(colored("\t-urllib", "green"))
 time.sleep(0.5)
 try:
     from PIL import Image
@@ -74,23 +54,12 @@ except:
     except:
         print(colored("Błąd w instalacji bibliotek!", "red"))
         time.sleep(3)
-        exit()
+        sys.exit()
 finally:
     print(colored("\t-pillow", "green"))
 time.sleep(0.5)
-try:
-    import tempfile
-except:
-    print(colored("\t-tempfile - instalowanie biblioteki", "red"))
-    os.system("pip3 install tempfile")
-    try:
-        import tempfile
-    except:
-        print(colored("Błąd w instalacji bibliotek!", "red"))
-        time.sleep(3)
-        exit()
-finally:
-    print(colored("\t-tempfile", "green"))
+import tempfile
+print(colored("\t-tempfile", "green"))
 time.sleep(0.5)
 try:
     import bs4
@@ -102,7 +71,7 @@ except:
     except:
         print(colored("Błąd w instalacji bibliotek!", "red"))
         time.sleep(3)
-        exit()
+        sys.exit()
 finally:
     print(colored("\t-bs4", "green"))
 time.sleep(0.5)
@@ -116,23 +85,15 @@ except:
     except:
         print(colored("Błąd w instalacji bibliotek!", "red"))
         time.sleep(3)
-        exit()
+        sys.exit()
 finally:
     print(colored("\t-requests", "green"))
 time.sleep(0.5)
-try:
-    import re
-except:
-    print(colored("\t-re - instalowanie biblioteki", "red"))
-    os.system("pip3 install re")
-    try:
-        import re
-    except:
-        print(colored("Błąd w instalacji bibliotek!", "red"))
-        time.sleep(3)
-        exit()
-finally:
-    print(colored("\t-re", "green"))
+import re
+print(colored("\t-re", "green"))
+time.sleep(0.5)
+import subprocess
+print(colored("\t-subprocess", "green"))
 time.sleep(0.5)
 
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -168,16 +129,17 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/szymon4github/CMD-Browser/m
 
 APP_FOLDER = os.path.dirname(os.path.abspath(__file__))
 
+def get_current_version():
+    with open(os.path.join(APP_FOLDER, "version.txt"), "r") as f:
+        return f.read().strip()
+
 def get_latest_version():
     try:
         r = requests.get(GITHUB_RAW_BASE + "version.txt")
         return r.text.strip()
     except:
         print(colored("Błąd pobierania najnowszej wersji!", "red"))
-
-def get_current_version():
-    with open(os.path.join(APP_FOLDER, "version.txt"), "r") as f:
-        return f.read().strip()
+        return get_current_version()
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -186,7 +148,15 @@ current = get_current_version()
 latest = get_latest_version()
 print(colored(f"Twoja wersja: {current}, najnowsza: {latest}", "yellow"))
 if latest != current:
-    print(colored("Dostępna aktualizacja. Uruchom updater.py, aby zaktualizować!", "yellow"))
+    print(colored("Dostępna aktualizacja!", "yellow"))
+    time.sleep(3)
+    odp = input("Czy zaktualizować? y/n")
+    if odp == "y":
+        print(colored("Uruchamianie aktualizatora", "green"))
+        subprocess.Popen(["python", "updater.py"])
+        sys.exit()
+    else:
+        pass
 else:
     print(colored("Masz najnowszą wersję!", "green"))
 
